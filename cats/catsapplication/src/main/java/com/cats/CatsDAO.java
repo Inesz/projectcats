@@ -1,13 +1,9 @@
-package com.cat;
-
-import com.cats.Cat;
+package com.cats;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class CatsDAO {
-    private static final Logger LOGGER = Logger.getLogger("CatsDAO");
     private List<Cat> cats = new ArrayList<>();
 
     public void addCat(Cat cat){

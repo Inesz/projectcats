@@ -1,4 +1,4 @@
-package com.cat;
+package com.cats;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -65,6 +65,9 @@ public class Menu {
             case "4":
                 exit();
                 break;
+                default:
+                    exit();
+                    break;
         }
     }
 
