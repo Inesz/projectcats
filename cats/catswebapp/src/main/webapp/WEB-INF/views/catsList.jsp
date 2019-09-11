@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,19 +33,23 @@
                 </tr>
             </c:forEach>
 
-            <form method="POST">
+            <form:form method="POST" modelAttribute="catDTO">
                 <tr>
                     <td>
-                        <input type="text" name="name" value="Undefined">
+                        <form:input path="name"/>
+                        <form:errors path="name"/>
                     </td>
                     <td>
-                        <input type="text" name="owner">
+                        <form:input path="owner"/>
+                        <form:errors path="owner"/>
                     </td>
                     <td>
-                        <input type="text" name="year">
+                        <form:input path="birth"/>
+                        <form:errors path="birth"/>
                     </td>
                     <td>
-                        <input type="text" name="weight">
+                        <form:input path="weight"/>
+                        <form:errors path="weight"/>
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +57,8 @@
                         <input type="submit" value="addCat">
                     </td>
                 </tr>
-            </form>
+            </form:form>
         </table>
+        <p>
     </body>
 </html>

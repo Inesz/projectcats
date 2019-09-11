@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 @Controller
 public class CatsController {
 
@@ -24,18 +26,22 @@ public class CatsController {
 
     //start:POST-REDIRECT-GET
     @RequestMapping(value="/cats", method={RequestMethod.POST})
-    public String catListView(Model model, @RequestParam(value = "name", required = false, defaultValue = "0") String name) {
+    public String catListView(Model model, @ModelAttribute("catDTO") @Valid CatDTO catDTO, BindingResult result){
 
-        if (!name.equals("0")){
-            catsDao.addCat(name);
+        if (!result.hasErrors()) {
+            catsDao.addCat(catDTO.getName());
+            return "redirect:cats";
+        }else {
+            /** find better solution */
+            model.addAttribute("catsList", catsDao.getCatsList());
+            return "catsList";
         }
-
-        return "redirect:cats";
     }
 
     @RequestMapping(value="/cats", method={RequestMethod.GET})
     public String doGet(Model model ){
         model.addAttribute("catsList", catsDao.getCatsList());
+        model.addAttribute("catDTO", new CatDTO());
         return "catsList";
     }
 
