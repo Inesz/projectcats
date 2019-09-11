@@ -1,8 +1,13 @@
 package com.cats;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
+@Component
 public class CatsDAO {
     private List<Cat> cats = new ArrayList<>();
 
@@ -27,5 +32,10 @@ public class CatsDAO {
 
         return catsList;
     }
+
+    public List<Cat> getCatsList() {
+        return cats;
+    }
+
 
 }

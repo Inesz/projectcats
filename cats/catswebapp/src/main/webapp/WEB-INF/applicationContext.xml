@@ -12,9 +12,17 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <context:component-scan
             base-package="com.cats"/> <!-- automatyczna obsługa klas z adnotacjami w tym pakiecie -->
+
     <context:annotation-config/> <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, które byśmy skonfigurowali ręcznie -->
 
     <mvc:annotation-driven/>
+
+    <!-- jeśli context:component-scan nie działa prawidłowo - nie widzi klasy. Jeśli context:component-scan i deklaracja beana jednocześnie - błąd: niejednosnaczność deklaracji
+    <bean id = "CatsDAO" class = "com.cats.CatsDAO">
+    </bean>-->
+
+    <bean id = "Cat" class = "com.cats.Cat">
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
