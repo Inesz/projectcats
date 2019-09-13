@@ -1,12 +1,30 @@
 package com.cats;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+/** name="cats" with @Entity is needed. Otherwise: InvalidDataAccessApiUsageException cats is not mapped */
+@Entity(name="cats")
+@Table(name="cats")
 public class Cat implements Serializable {
+    @Id
+    @Column(name="id")
+    private Integer id;
+
+    @Column(name="name")
     private String name = "unknown";
+
+    @Column(name="birth")
     private Date birth = new Date();
+
+    @Column(name="weight")
     private Double weight = 0.0;
+
+    @Column(name="owner")
     private String owner = "unknown";
 
     public Cat(){}
@@ -52,5 +70,13 @@ public class Cat implements Serializable {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

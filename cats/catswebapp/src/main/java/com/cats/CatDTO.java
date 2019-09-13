@@ -2,9 +2,6 @@ package com.cats;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.Pattern;
-import java.util.Date;
-
 public class CatDTO {
 
     @NotBlank
