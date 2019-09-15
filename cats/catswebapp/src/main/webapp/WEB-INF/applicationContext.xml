@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.0.xsd
-http://www.springframework.org/schema/mvc
-http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+http://www.springframework.org/schema/data/jpa
+http://www.springframework.org/schema/data/jpa/spring-jpa-1.11.xsd">
 
-    <context:component-scan
-            base-package="com.cats"/> <!-- automatyczna obsługa klas z adnotacjami w tym pakiecie -->
+    <context:component-scan base-package="com.cats">
+        <!-- <context:exclude-filter type="assignable" expression="com.cats.SpringDataDAO"/>-->
+    </context:component-scan><!-- automatyczna obsługa klas z adnotacjami w tym pakiecie -->
 
-    <context:annotation-config/> <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, które byśmy skonfigurowali ręcznie -->
+    <context:annotation-config/>
+    <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, które byśmy skonfigurowali ręcznie -->
 
-    <mvc:annotation-driven/>
+    <tx:annotation-driven/>
 
-    <!-- jeśli context:component-scan nie działa prawidłowo - nie widzi klasy. Jeśli context:component-scan i deklaracja beana jednocześnie - błąd: niejednosnaczność deklaracji
+    <!-- jeśli context:component-scan nie działa prawidłowo - nie widzi klasy. Jeśli context:component-scan i deklaracja beana jednocześnie - błąd: niejednoznaczność deklaracji
+    No qualifying bean of type 'com.cats.CatsDAO' available: expected single matching bean but found 2: catsDAO,CatsDAO
     <bean id = "CatsDAO" class = "com.cats.CatsDAO">
     </bean>-->
 
@@ -61,4 +67,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
+    <jpa:repositories base-package="com.cats" entity-manager-factory-ref="entityManagerFactory"
+                      repository-impl-postfix="SpringDataDAO" transaction-manager-ref="transactionManager"/>
 </beans>

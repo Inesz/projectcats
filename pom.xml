@@ -17,8 +17,29 @@
     <url>http://cats.com</url>
 
     <properties>
-        <spring-framework.version>5.1.8.RELEASE</spring-framework.version>
-        <hibernate.version>5.4.4.Final</hibernate.version>
+        <spring-core.version>5.1.8.RELEASE</spring-core.version>
+        <spring-context.version>5.1.8.RELEASE</spring-context.version>
+        <spring-aop.version>5.1.8.RELEASE</spring-aop.version>
+        <spring-webmvc.version>5.1.8.RELEASE</spring-webmvc.version>
+        <spring-web.version>5.1.8.RELEASE</spring-web.version>
+        <spring-orm.version>5.1.8.RELEASE</spring-orm.version>
+        <spring-jdbc.version>5.1.8.RELEASE</spring-jdbc.version>
+        <!--<spring-tx.version>5.1.8.RELEASE</spring-tx.version>-->
+        <spring-data-jpa.version>2.1.10.RELEASE</spring-data-jpa.version>
+        <spring-data-commons.version>2.1.10.RELEASE</spring-data-commons.version>
+
+        <hibernate-validator.version>6.0.17.Final</hibernate-validator.version>
+        <hibernate-entitymanager.version>5.4.4.Final</hibernate-entitymanager.version>
+        <hibernate-core.version>5.4.3.Final</hibernate-core.version>
+
+        <mysql-connector-java.version>5.1.6</mysql-connector-java.version>
+        <jstl.version>1.2</jstl.version>
+        <junit-jupiter-api.version>RELEASE</junit-jupiter-api.version>
+        <junit.version>3.8.1</junit.version>
+
+        <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
+        <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
 
     <build>
@@ -26,7 +47,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
@@ -41,13 +62,13 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
+            <version>${hibernate-core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>RELEASE</version>
+            <version>${junit-jupiter-api.version}</version>
             <scope>test</scope>
         </dependency>
 
