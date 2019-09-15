@@ -1,4 +1,4 @@
-package com.cats;
+package com.cats.DTO;
 
 import org.hibernate.validator.constraints.NotBlank;
 

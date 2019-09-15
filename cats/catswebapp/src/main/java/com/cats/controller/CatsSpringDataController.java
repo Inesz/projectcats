@@ -1,5 +1,8 @@
-package com.cats;
+package com.cats.controller;
 
+import com.cats.Cat;
+import com.cats.DTO.CatDTO;
+import com.cats.DAO.SpringDataDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +19,7 @@ import javax.validation.Valid;
 @Transactional
 //@EnableJpaRepositories("com.cats")
 //@EnableJpaRepositories(transactionManagerRef="entityManagerFactory")
-@RequestMapping("/sd")
+@RequestMapping("/")
 public class CatsSpringDataController {
 
     @Autowired

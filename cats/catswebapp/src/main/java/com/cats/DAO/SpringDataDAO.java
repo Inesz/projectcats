@@ -1,5 +1,6 @@
-package com.cats;
+package com.cats.DAO;
 
+import com.cats.Cat;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
