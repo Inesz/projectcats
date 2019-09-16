@@ -3,6 +3,7 @@ package com.cats.controller;
 import com.cats.Cat;
 import com.cats.DTO.CatDTO;
 import com.cats.DAO.SpringDataDAO;
+import com.cats.service.CatsCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +22,8 @@ import javax.validation.Valid;
 //@EnableJpaRepositories(transactionManagerRef="entityManagerFactory")
 @RequestMapping("/")
 public class CatsSpringDataController {
-
     @Autowired
-    private SpringDataDAO catsDao;
+    private CatsCRUDService catsCRUDService;
 
     @RequestMapping("")
     public String indexView(Model model) {
@@ -35,18 +35,18 @@ public class CatsSpringDataController {
     public String catListView(Model model, @ModelAttribute("catDTO") @Valid CatDTO catDTO, BindingResult result){
 
         if (!result.hasErrors()) {
-            catsDao.save(new Cat(catDTO.getName()));
+            catsCRUDService.insertCat(new Cat(catDTO.getName()));
             return "redirect:cats";
         }else {
             /** find better solution */
-            model.addAttribute("catsList", catsDao.findAll());
+            model.addAttribute("catsList", catsCRUDService.selectCats());
             return "catsList";
         }
     }
 
     @RequestMapping(value="/cats", method={RequestMethod.GET})
     public String doGet(Model model ){
-        model.addAttribute("catsList", catsDao.findAll());
+        model.addAttribute("catsList", catsCRUDService.selectCats());
         model.addAttribute("catDTO", new CatDTO());
         return "catsList";
     }
@@ -54,7 +54,7 @@ public class CatsSpringDataController {
 
     @RequestMapping("/remove-{name}")
     public String catRemove(Model model, @PathVariable("name") String name) {
-        catsDao.delete(catsDao.findByName(name).get());
+        catsCRUDService.deleteCat(catsCRUDService.selectCat(name));
         return "redirect:cats";
     }
 }
