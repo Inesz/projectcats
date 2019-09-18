@@ -108,6 +108,24 @@
             <version>${junit-jupiter-api.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- because of Catalina error: Failed to load class "org.slf4j.impl.StaticLoggerBinder" -->
+        <!-- SLF4J on top of the implementation : https://www.baeldung.com/slf4j-with-log4j2-logback -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j-slf4j-impl.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
