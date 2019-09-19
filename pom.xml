@@ -44,6 +44,11 @@
         <log4j-slf4j-impl.version>2.12.1</log4j-slf4j-impl.version>
         <log4j-core.version>2.12.1</log4j-core.version>
         <log4j-api.version>2.12.1</log4j-api.version>
+
+        <spring-security-config.version>5.1.6.RELEASE</spring-security-config.version>
+        <spring-security-taglibs.version>5.1.6.RELEASE</spring-security-taglibs.version>
+        <spring-security-crypto.version>5.1.6.RELEASE</spring-security-crypto.version>
+        <spring-security-web.version>5.1.6.RELEASE</spring-security-web.version>
     </properties>
 
     <build>

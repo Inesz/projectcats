@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+    <security:http auto-config="true" use-expressions="false" authentication-manager-ref="authenticationManager">
+        <security:intercept-url pattern="/cats" access="ROLE_ADMIN"/>
+    </security:http>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+            <security:password-encoder ref="passwordEncoder"/>
+            <security:user-service>
+                <security:user name="admin" password="$2a$11$WRZ/TAcbJa5xKcQzzVCNyu4kHzzYDky4zTDjaeOsLfc3rJNUK4Vki"
+                               authorities="ROLE_ADMIN"/>
+                <security:user name="user" password="$2a$11$JttaPSYHQZwG4o3lA0cSXu19TSTjWO8wj6.0.leaRKyTUpQbXt5oy"
+                               authorities="ROLE_USER"/>
+                <!-- bcrypt: https://www.browserling.com/tools/bcrypt -->
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <constructor-arg name="strength" value="11"/>
+    </bean>
+
+    <bean id="authenticationSuccessHandler"
+          class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <!-- After login, return to the last visited page -->
+        <property name="useReferer" value="true"/>
+    </bean>
+
+</beans>
