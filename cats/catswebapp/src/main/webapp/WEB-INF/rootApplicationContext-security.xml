@@ -8,7 +8,9 @@
        http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <security:http auto-config="true" use-expressions="false" authentication-manager-ref="authenticationManager">
-        <security:intercept-url pattern="/cats" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/cats/**" access="ROLE_ADMIN"/>
+        <!--http://ant.apache.org/manual/dirtasks.html#patterns-->
+        <security:logout logout-success-url="/" logout-url="/logout" delete-cookies="JSESSIONID" />
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">

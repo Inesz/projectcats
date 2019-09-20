@@ -9,6 +9,8 @@
         <title>Cats list</title>
     </head>
     <body>
+        <%@ include file="logout.jspf" %>
+
         <h1>Cats list</h1>
 
         <table style="width:100%">

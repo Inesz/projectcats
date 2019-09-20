@@ -7,6 +7,7 @@
         <title>Hello kittens</title>
     </head>
     <body>
+     <%@ include file="logout.jspf" %>
         <h1>Powitanie</h1>
         <p><% out.println("Hello world! -- From JSP"); %></p>
         <a href="<c:url value="cats"/>">Przejdź do listy kotów.</a>
