@@ -9,7 +9,6 @@
 
     <security:http auto-config="true" use-expressions="false" authentication-manager-ref="authenticationManager">
         <security:intercept-url pattern="/cats/**" access="ROLE_ADMIN"/>
-        <!--http://ant.apache.org/manual/dirtasks.html#patterns-->
         <security:logout logout-success-url="/" logout-url="/logout" delete-cookies="JSESSIONID" />
     </security:http>
 
@@ -21,7 +20,6 @@
                                authorities="ROLE_ADMIN"/>
                 <security:user name="user" password="$2a$11$JttaPSYHQZwG4o3lA0cSXu19TSTjWO8wj6.0.leaRKyTUpQbXt5oy"
                                authorities="ROLE_USER"/>
-                <!-- bcrypt: https://www.browserling.com/tools/bcrypt -->
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>
@@ -32,7 +30,6 @@
 
     <bean id="authenticationSuccessHandler"
           class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
-        <!-- After login, return to the last visited page -->
         <property name="useReferer" value="true"/>
     </bean>
 

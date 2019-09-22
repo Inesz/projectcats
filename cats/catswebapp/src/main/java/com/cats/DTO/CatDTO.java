@@ -1,12 +1,12 @@
 package com.cats.DTO;
 
-import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.NotBlank;
 
 public class CatDTO {
 
     @NotBlank
     private String name;
-    //@Pattern(regexp="[0-3]?[0-9]\\.[0-1]?[0-9]\\.[1-2][0-9]{3}")
     private String birth;
     private String weight;
     private String owner;

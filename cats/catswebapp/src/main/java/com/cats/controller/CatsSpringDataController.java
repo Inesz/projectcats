@@ -2,8 +2,8 @@ package com.cats.controller;
 
 import com.cats.Cat;
 import com.cats.DTO.CatDTO;
-import com.cats.DAO.SpringDataDAO;
 import com.cats.service.CatsCRUDService;
+import com.sun.xml.bind.v2.TODO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +20,15 @@ import javax.validation.Valid;
 
 @Controller
 @Transactional
-//@EnableJpaRepositories("com.cats")
-//@EnableJpaRepositories(transactionManagerRef="entityManagerFactory")
 @RequestMapping("/")
 public class CatsSpringDataController {
     private static Logger LOGGER = LoggerFactory.getLogger(CatsSpringDataController.class);
-    private static org.apache.logging.log4j.Logger Log = org.apache.logging.log4j.LogManager.getLogger(CatsSpringDataController.class);
 
     @Autowired
     private CatsCRUDService catsCRUDService;
 
     @RequestMapping("")
     public String indexView(Model model) {
-        LOGGER.info("Java Logging with SLF4J info test");
-        LOGGER.debug("Java Logging with SLF4J debug test");
-        Cat cat = new Cat("TestCat");
-        LOGGER.error("Java Logging with SLF4J error test", cat);
-        Log.info("Java Logging with log4j info test");
-        Log.debug("Java Logging with log4j debug test");
-        Log.error("Java Logging with log4j error test", cat);
-        
         return "index";
     }
 
@@ -51,7 +40,7 @@ public class CatsSpringDataController {
             catsCRUDService.insertCat(new Cat(catDTO.getName()));
             return "redirect:cats";
         }else {
-            /** find better solution */
+            // TODO find better solution
             model.addAttribute("catsList", catsCRUDService.selectCats());
             return "catsList";
         }

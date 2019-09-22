@@ -16,19 +16,11 @@ http://www.springframework.org/schema/data/jpa/spring-jpa-1.11.xsd
 http://www.springframework.org/schema/jdbc
 http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd">
 
-    <context:component-scan base-package="com.cats">
-        <!-- <context:exclude-filter type="assignable" expression="com.cats.DAO.SpringDataDAO"/>-->
-    </context:component-scan><!-- automatyczna obsługa klas z adnotacjami w tym pakiecie -->
+    <context:component-scan base-package="com.cats"/>
 
     <context:annotation-config/>
-    <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, które byśmy skonfigurowali ręcznie -->
 
     <tx:annotation-driven/>
-
-    <!-- jeśli context:component-scan nie działa prawidłowo - nie widzi klasy. Jeśli context:component-scan i deklaracja beana jednocześnie - błąd: niejednoznaczność deklaracji
-    No qualifying bean of type 'com.cats.CatsDAO' available: expected single matching bean but found 2: catsDAO,CatsDAO
-    <bean id = "CatsDAO" class = "com.cats.CatsDAO">
-    </bean>-->
 
     <bean id="Cat" class="com.cats.Cat">
     </bean>
@@ -56,15 +48,11 @@ http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="showSql" value="false"/>
                 <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
-                <!--<property name="generateDdl" value="true"/>-->
             </bean>
         </property>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">none</prop>
-                <!--<prop key="hibernate.hbm2ddl.import_files_sql_extractor">
-                    org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
-                </prop>-->
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
             </props>
         </property>
     </bean>
@@ -77,49 +65,22 @@ http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd">
     <jpa:repositories base-package="com.cats" entity-manager-factory-ref="entityManagerFactory"
                       repository-impl-postfix="SpringDataDAO" transaction-manager-ref="transactionManager"/>
 
-    <!-- init DB by spring DataSourceInitializer
-    https://www.javarticles.com/2015/01/example-of-spring-datasourceinitializer.html
- -->
-        <bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
-            <property name="scripts">
-                <list>
-                    <value>classpath:database\schema-DDL-mysql.sql</value>
-                    <value>classpath:database\schema-DML-mysql.sql</value>
-                </list>
-            </property>
-            <property name="continueOnError" value="true"/>
-        </bean>
+    <bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+        <property name="scripts">
+            <list>
+                <value>classpath:database\schema-DDL-mysql.sql</value>
+                <value>classpath:database\schema-DML-mysql.sql</value>
+            </list>
+        </property>
+        <property name="continueOnError" value="true"/>
+    </bean>
 
-        <bean id="startupScripts" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
-            <property name="dataSource">
-                <ref bean="dataSource"/>
-            </property>
-            <property name="databasePopulator">
-                <ref bean="dbInit"/>
-            </property>
-        </bean>
-<!-- -->
-
-    <!-- init DB by spring’s custom element jdbc:initialize-database element
-    https://www.javarticles.com/2015/01/example-of-spring-datasourceinitializer.html
-
-        <jdbc:initialize-database data-source="dataSource" enabled="true">
-            <jdbc:script location="classpath:schema-DDL-mysql.sql"/>
-        </jdbc:initialize-database>
-        -->
-
-    <!-- init by JPA and Hibernate:
-    https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html
-    https://www.onlinetutorialspoint.com/hibernate/hbm2ddl-auto-example-hibernate-xml-config.html
-
-    <property name="generateDdl" value="true"/>
-    <prop key="hibernate.hbm2ddl.auto">create</prop>
-    <prop key="hibernate.hbm2ddl.import_files_sql_extractor">
-        org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
-    </prop>
-
-    file: import.sql and automatically from beans
-
-    *better with Spring Boot from schema.sql and data.sql schema-${platform}.sql and data-${platform}.sql (not tested)
-    -->
+    <bean id="startupScripts" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="databasePopulator">
+            <ref bean="dbInit"/>
+        </property>
+    </bean>
 </beans>
