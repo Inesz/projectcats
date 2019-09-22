@@ -6,7 +6,7 @@ import java.util.Date;
 
 /** name="cats" with @Entity is needed. Otherwise: InvalidDataAccessApiUsageException cats is not mapped */
 @Entity(name="cats")
-@Table(name="cats")
+@Table(name="Cats")
 public class Cat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
