@@ -1,15 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-       <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cats list</title>
-    </head>
-    <body>
-    <p>
-    <a href="<c:url value="/logout" />">Logout</a>
-       </p>
-    </body>
-    </html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Cats list</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<sec:authentication var="principal" property="principal"/>
+
+<div id="loginPanel" class="in-line">
+    <form method="post" action="./login">
+        <input type="text" name="login"/>
+        <input type="password" name="password"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="submit" value="Login"/>
+    </form>
+
+    <!-- If you are using logout with CSRF you must perform a POST
+    https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#csrf-logout -->
+    <form method="post" action="./logout?${_csrf.parameterName}=${_csrf.token}" method="post"
+          enctype="multipart/form-data">
+        <input type="submit" value="Logout"/>
+    </form>
+
+    <p>Hello
+        <sec:authorize access="isAuthenticated()">${principal.username}</sec:authorize>
+        !
+    </p>
+</div>
+
+
+</body>
+</html>
