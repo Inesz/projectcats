@@ -6,7 +6,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-   <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
     <title>Cats list</title>
     <link href="css/style.css" rel="stylesheet">
 </head>
@@ -35,17 +34,14 @@
     </p>
 </div>
 
-<a href="?lang=pl_PL">pl_PL</a></p>
-<a href="?lang=en_GB">en_GB</a></p>
-<a href="?lang=en_US">en_US</a></p>
-<a href="?lang=zh_CN">zh_CN</a></p>
-(nie znajdzie po samym kodzie zh; zmieni layout oraz da labelki po pl)</p>
-<a href="?lang=zh">zh</a></p>
-(nieistniejący prop; labelki pl (lokalizacja servera a nie en_GB jak jest ustawione defaultowo? prosty labels.prop nie działa)</p>
-<a href="?lang=oo">oo</a></p>
-(pusty da defaultowy en_GB)</p>
-<a href="?lang">pusty</a></p>
-<!--info about locales: https://lh.2xlibre.net/locales/-->
+<select name="dropdown" onchange="location = this.value;" >
+    <option value="?lang">lang</option>
+    <option value="?lang=pl_PL">pl_PL</option>
+    <option value="?lang=en_GB">en_GB</option>
+    <option value="?lang=en_US">en_US</option>
+    <option value="?lang=zh_CN">zh_CN</option>
+</select>
 
 </body>
+
 </html>
