@@ -48,6 +48,9 @@
         <spring-security-taglibs.version>5.1.6.RELEASE</spring-security-taglibs.version>
         <spring-security-crypto.version>5.1.6.RELEASE</spring-security-crypto.version>
         <spring-security-web.version>5.1.6.RELEASE</spring-security-web.version>
+
+        <commons-fileupload.version>1.4</commons-fileupload.version>
+        <google-cloud-storage.version>1.90.0</google-cloud-storage.version>
     </properties>
 
     <build>

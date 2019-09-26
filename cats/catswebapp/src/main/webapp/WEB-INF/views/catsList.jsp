@@ -63,6 +63,8 @@
             </form:form>
         </table>
         <p>
+
+        <%@ include file="imgUpload.jspf" %>
     </body>
 </html>
 <!--
