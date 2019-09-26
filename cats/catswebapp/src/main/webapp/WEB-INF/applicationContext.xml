@@ -36,7 +36,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 
     <jpa:repositories base-package="com.cats" entity-manager-factory-ref="entityManagerFactory"
-                      repository-impl-postfix="SpringDataDAO" transaction-manager-ref="transactionManager"/>
+                      transaction-manager-ref="transactionManager"/>
 
     <bean id="dbInit" class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
         <property name="scripts">
@@ -70,5 +70,5 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="en_GB"/>
 
-</bean>
+    </bean>
 </beans>

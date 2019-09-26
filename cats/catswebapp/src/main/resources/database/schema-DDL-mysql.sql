@@ -1,20 +1,11 @@
 --DROP TABLE `GyV5uYepJV`.`UserRole`;
 --DROP TABLE `GyV5uYepJV`.`Users`;
 --DROP TABLE `GyV5uYepJV`.`Roles`;
+--DROP VIEW `GyV5uYepJV.mySchema.cat`
 --DROP TABLE `GyV5uYepJV`.`Cats`;
+--DROP TABLE `GyV5uYepJV`.`CatFoto`
 
-CREATE TABLE IF NOT EXISTS `GyV5uYepJV`.`Cats`
-(
-`id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'unique id, primary key' ,
-`birth` TIMESTAMP(6) COMMENT 'date of birth in timestamp' ,
-`name` VARCHAR(60) NOT NULL COMMENT 'cat\'s name' ,
-`owner` VARCHAR(60) COMMENT 'cat\'s owner' ,
-`weight` double precision COMMENT 'cat\'s weight' ,
-CONSTRAINT `PK_CAT` PRIMARY KEY (`id`)
-)
-ENGINE = InnoDB;
-
-CREATE TABLE IF NOT EXISTS `GyV5uYepJV`.`Roles`
+create TABLE IF NOT EXISTS `GyV5uYepJV`.`Roles`
 (
 `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'unique id, primary key' ,
 `name` VARCHAR(30) NULL COMMENT 'short name, alias' ,
@@ -23,7 +14,7 @@ CONSTRAINT `PK_ROLES` PRIMARY KEY (`id`)
 )
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `GyV5uYepJV`.`Users`
+create TABLE IF NOT EXISTS `GyV5uYepJV`.`Users`
 (
 `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'user id' ,
 `name` VARCHAR(60) NULL DEFAULT NULL COMMENT 'name' ,
@@ -36,7 +27,7 @@ UNIQUE `LOGIN` (`login`)
 )
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `GyV5uYepJV`.`UserRole`
+create TABLE IF NOT EXISTS `GyV5uYepJV`.`UserRole`
 (
 `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'user-role connection id' ,
 `userId` int(20) UNSIGNED NOT NULL COMMENT 'user id' ,
@@ -48,3 +39,38 @@ CONSTRAINT `FK_USER` FOREIGN KEY (`userId`) REFERENCES `GyV5uYepJV`.`Users`(`id`
 CONSTRAINT `FK_ROLE` FOREIGN KEY (`roleId`) REFERENCES `GyV5uYepJV`.`Roles`(`id`)
 )
 ENGINE = InnoDB;
+
+create TABLE IF NOT EXISTS `GyV5uYepJV`.`Cats`
+(
+`id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'unique id, primary key' ,
+`birth` TIMESTAMP(6) COMMENT 'date of birth in timestamp' ,
+`name` VARCHAR(60) NOT NULL COMMENT 'cat\`s name',
+`owner` VARCHAR(60) COMMENT 'cat\`s owner' ,
+`weight` double precision COMMENT 'cat\`s weight' ,
+CONSTRAINT `PK_CAT` PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB;
+
+create TABLE IF NOT EXISTS `GyV5uYepJV`.`CatFoto`
+(
+`id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'unique id, primary key' ,
+`catId` int(20) UNSIGNED NOT NULL COMMENT 'cat id' ,
+`comment` VARCHAR(500) NULL COMMENT 'comment to file' ,
+`oldName` VARCHAR(30) NOT NULL COMMENT 'name in uploud' ,
+`newName` VARCHAR(30) NOT NULL COMMENT 'name in cloud' ,
+`size` BIGINT(30) NOT NULL COMMENT 'size of file in bytes' ,
+`type` VARCHAR(30) NOT NULL COMMENT 'type of file' ,
+CONSTRAINT `PK_ROLES` PRIMARY KEY (`id`),
+CONSTRAINT `FK_CAT` FOREIGN KEY (`catId`) REFERENCES `GyV5uYepJV`.`Cats`(`id`)
+)
+ENGINE = InnoDB;
+/* check long */
+/* vievs forbidden on remotemysql.com
+CREATE VIEW mySchema.cat
+AS
+SELECT
+    c.`id`, c.`birth`, c.`name`, c.`owner`, c.`weight`,
+    f.`comment`, f.`oldName`, f.`newName`, f.`size`, f.`type`
+FROM
+    `GyV5uYepJV`.`CatFoto` AS f LEFT JOIN `GyV5uYepJV`.`Cats` AS c ON f.catId = c.id;
+*/
