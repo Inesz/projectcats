@@ -3,3 +3,8 @@
   font-size: 20px;
   padding: 20px;
 }
+
+.cat-border{
+  border-style: solid;
+  border-color: coral;
+}

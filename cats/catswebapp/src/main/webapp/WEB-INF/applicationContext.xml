@@ -69,6 +69,9 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
     <!--if i18n.CookieLocaleResolver - problem with en_GB. en is working only if fileName is en. No such problem with pl-->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="en_GB"/>
-
     </bean>
+
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/classes/static/" />
+    <!--example resource path: http://localhost:8080/catswebapp/resources/img/cat_upload.jpg-->
 </beans>

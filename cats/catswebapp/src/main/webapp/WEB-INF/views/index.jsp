@@ -4,6 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <link href="resources/css/style.css" rel="stylesheet">
         <title>Hello kittens</title>
     </head>
     <body>
@@ -12,5 +13,9 @@
         <p><% out.println("Hello world! -- From JSP"); %></p>
         <a href="<c:url value="cats"/>">Przejdź do listy kotów.</a>
 
+<div class="cat-border">
+        <img src="resources/img/cat_upload.jpg"/>
+        <img src= "<c:url value="/resources/img/cat_upload.jpg"></c:url>" />
+</div>
     </body>
 </html>
