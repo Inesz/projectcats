@@ -51,6 +51,10 @@
 
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <google-cloud-storage.version>1.90.0</google-cloud-storage.version>
+
+        <bootstrap.version>4.3.1</bootstrap.version>
+        <jquery.version>3.4.1</jquery.version>
+        <webjars-locator.version>0.37</webjars-locator.version>
     </properties>
 
     <build>

@@ -72,6 +72,12 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
     </bean>
 
     <mvc:annotation-driven/>
-    <mvc:resources mapping="/resources/**" location="/WEB-INF/classes/static/" />
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/classes/static/, /webjars/">
+        <!-- to use webjars-locator, cache-control and resource-chain need to be set to true -->
+        <mvc:cache-control cache-public="true" max-age="2592000"/>
+        <mvc:resource-chain resource-cache="true"/>
+    </mvc:resources>
     <!--example resource path: http://localhost:8080/catswebapp/resources/img/cat_upload.jpg-->
+    <!-- path without webjars-locator <script src="resources/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+    <!-- path with webjars-locator  <script src="resources/bootstrap/js/bootstrap.min.js"></script> -->
 </beans>
