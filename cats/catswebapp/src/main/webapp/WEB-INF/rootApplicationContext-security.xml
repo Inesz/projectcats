@@ -14,13 +14,15 @@
        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <util:properties id="cloud" location="classpath:properties/cloud.properties"/>
-    <context:property-placeholder properties-ref="cloud"/>
+    <util:properties id="db" location="classpath:properties/db.properties, classpath:properties/db_security.properties"/>
+    <context:property-placeholder properties-ref="cloud" ignore-unresolvable="true"/>
+    <context:property-placeholder properties-ref="db" ignore-unresolvable="true"/>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://remotemysql.com:3306/GyV5uYepJV"/>
-        <property name="username" value="GyV5uYepJV"/>
-        <property name="password" value="Gf5nszJBmk"/>
+    <bean id="dataSource" class="${db.dataSource}">
+        <property name="driverClassName" value="${db.driverClassName}"/>
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -64,8 +66,8 @@
         <security:authentication-provider>
             <security:password-encoder ref="passwordEncoder"/>
             <security:jdbc-user-service data-source-ref="dataSource"
-                                        users-by-username-query="SELECT login, password, 'true' FROM Users WHERE login=?"
-                                        authorities-by-username-query="select u.login, r.role from Roles r inner JOIN UserRole ur on ur.roleId=r.id and valid=true inner join Users u on u.id=ur.userId WHERE u.login = ?"/>
+                                        users-by-username-query="${db.security.users.by.username.query}"
+                                        authorities-by-username-query="${db.security.authorities.by.username.query}"/>
         </security:authentication-provider>
     </security:authentication-manager>
     <!-- gives permission to use @Secured -->
