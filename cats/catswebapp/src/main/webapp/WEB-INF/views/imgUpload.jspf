@@ -7,12 +7,20 @@
 <html>
 <head>
     <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+        <link href="resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="resources/css/style.css" rel="stylesheet">
 </head>
 <body>
+<spring:eval var="data_max_file_size" expression="@cloud.getProperty('cloud.max.file.size')"/>
+
 <form enctype="multipart/form-data" method="POST" action="./upload?${_csrf.parameterName}=${_csrf.token}">
-    <input type="file" name="imgFile"/>
+    <input type="file" name="imgFile" class="file-upload" accept="image/*" data-max-file-size="${data_max_file_size}"/>
+    <!-- data-max-file-size not implemented - only example of using properties value -->
     catName:<input type="text" name="catName"/>
     description:<input type="text" name="description"/>
     <input type="submit" value="addImg">
 </form>
+
+<script src="resources/jquery/jquery.min.js"></script>
+<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
