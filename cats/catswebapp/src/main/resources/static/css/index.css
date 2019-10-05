@@ -1,0 +1,33 @@
+  html, body {
+    height: 100%;
+  }
+
+  .min-100 {
+      min-height: 100%;
+      min-width: 100%;
+  }
+
+.hi-message{
+    font-family: Georgia, serif;
+  font-size: 40px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #EBEBEB;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: normal;
+  text-transform: none;
+  }
+
+  .border{
+    border-style: solid;
+    border-color: coral;
+  }
+
+  .bg-image {
+    background-image:url(http://localhost:8080/catswebapp/resources/img/525.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
