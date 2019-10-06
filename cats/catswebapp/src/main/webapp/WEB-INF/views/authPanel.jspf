@@ -1,0 +1,41 @@
+<sec:authentication var="principal" property="principal"/>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+<div class="col" style="color:white;" >Hello <sec:authorize access="isAuthenticated()">${principal.username}</sec:authorize>!</div>
+
+<sec:authorize access="!isAuthenticated()">
+  <form method="post" action="./login" class="form-inline">
+            <input type="text" name="login" class="form-control" placeholder="login"/>
+            <input type="password" name="password" class="form-control" placeholder="password"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="<spring:message code="authPanel.tooltip.login"/>"><i class="fas fa-power-off" style="color:white"></i></button>
+  </form>
+</sec:authorize>
+
+<sec:authorize access="isAuthenticated()">
+<div class="form-inline">
+  <form method="post" action="./logout?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data" class="form-inline">
+            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="<spring:message code="authPanel.tooltip.login"/>"><i class="fas fa-power-off" style="color:white"></i></button>
+  </form>
+</div>
+</sec:authorize>
+
+<div class="form-inline">
+    <button type="button" value="?lang=pl_PL" onclick="location=this.value;" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="pl_PL"><span class="flag-icon flag-icon-pl"></span></button>
+    <button type="button" value="?lang=en_GB" onclick="location=this.value;" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="en_GB"><span class="flag-icon flag-icon-gb"></span></button>
+    <button type="button" value="?lang=en_US" onclick="location=this.value;" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="en_US"><span class="flag-icon flag-icon-us"></span></button>
+    <button type="button" value="?lang=zh_CN" onclick="location=this.value;" class="btn btn-dark" data-toggle="tooltip" data-placement="bottom" title="zh_CN"><span class="flag-icon flag-icon-cn"></span></button>
+</div>
+</nav>
+
+<!-- problem with dropdown in nav
+<div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">lang</button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <button class="dropdown-item" type="button" value="?lang=pl_PL" onclick="location=this.value;"><span class="flag-icon flag-icon-pl"></span> pl_PL</button>
+    <button class="dropdown-item" type="button" value="?lang=en_GB" onclick="location=this.value;"><span class="flag-icon flag-icon-gb"></span> en_GB</button>
+    <button class="dropdown-item" type="button" value="?lang=en_US" onclick="location=this.value;"><span class="flag-icon flag-icon-us"></span> en_US</button>
+    <button class="dropdown-item" type="button" value="?lang=zh_CN" onclick="location=this.value;"><span class="flag-icon flag-icon-zh"></span> zh_CN</button>
+  </div>
+</div>
+-->
