@@ -1,9 +1,9 @@
 --DROP TABLE `GyV5uYepJV`.`UserRole`;
 --DROP TABLE `GyV5uYepJV`.`Users`;
 --DROP TABLE `GyV5uYepJV`.`Roles`;
---DROP VIEW `GyV5uYepJV.mySchema.cat`
+--DROP VIEW `GyV5uYepJV.mySchema.cat`;
 --DROP TABLE `GyV5uYepJV`.`Cats`;
---DROP TABLE `GyV5uYepJV`.`CatFoto`
+--DROP TABLE `GyV5uYepJV`.`CatFoto`;
 
 create TABLE IF NOT EXISTS `GyV5uYepJV`.`Roles`
 (
@@ -61,7 +61,8 @@ create TABLE IF NOT EXISTS `GyV5uYepJV`.`CatFoto`
 `size` BIGINT(30) NOT NULL COMMENT 'size of file in bytes' ,
 `type` VARCHAR(30) NOT NULL COMMENT 'type of file' ,
 CONSTRAINT `PK_ROLES` PRIMARY KEY (`id`),
-CONSTRAINT `FK_CAT` FOREIGN KEY (`catId`) REFERENCES `GyV5uYepJV`.`Cats`(`id`)
+CONSTRAINT `FK_CAT` FOREIGN KEY (`catId`) REFERENCES `GyV5uYepJV`.`Cats`(`id`),
+UNIQUE `CATID` (`catId`)
 )
 ENGINE = InnoDB;
 /* check long */
