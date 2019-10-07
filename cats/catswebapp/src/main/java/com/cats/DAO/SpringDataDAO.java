@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface SpringDataDAO extends CrudRepository<Cat, Long>
 {
     List<Cat> findAll();
-    Optional<Cat> findById(Long id);
+    Optional<Cat> findById(Integer id);
     Optional<Cat> findByName(String name);
     Cat save(Cat cat);
     void delete(Cat cat);

@@ -67,4 +67,10 @@ public class CatsSpringDataController {
         catFotoMngmService.saveFile(imgFile, catName, description);
         return "redirect:cats";
     }
+
+    @RequestMapping(value = "/cats/{id}", method = {RequestMethod.GET})
+    public String catNameViewGet(Model model, @PathVariable("id") String id) {
+            model.addAttribute("cat", catsCRUDService.selectCatById(id));
+        return "cat";
+    }
 }

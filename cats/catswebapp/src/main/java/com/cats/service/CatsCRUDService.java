@@ -21,6 +21,13 @@ public class CatsCRUDService {
         return springDataDAO.findByName(name).get();
     }
 
+    public Cat selectCatById(String id) {
+        Integer catId = Integer.parseInt(id);
+        return springDataDAO.findById(catId).get();
+    }
+
+    public Cat selectCatById(Integer id) { return springDataDAO.findById(id).get(); }
+
     public List<Cat> selectCats() {
         return springDataDAO.findAll();
     }

@@ -30,7 +30,7 @@
 
                 <tr>
                     <td>
-                        <a href="<c:url value=" cats/${cat.name}"/>">
+                       <a href="<c:url value="cats/${cat.id}"/>">
                         ${cat.getName()}
                     </a>
                 </td>
