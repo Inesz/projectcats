@@ -8,9 +8,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href="../resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <link href="../resources/font-awesome/css/all.css" type="text/css" rel="stylesheet"/>
-    <link href="../resources/flag-icon-css/css/flag-icon.min.css" type="text/css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/resources/font-awesome/css/all.css" type="text/css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/resources/flag-icon-css/css/flag-icon.min.css" type="text/css" rel="stylesheet"/>
     <title>Cats list</title>
 </head>
 <body>
@@ -20,8 +20,8 @@
 
 <%@ include file="imgUpload.jspf" %>
 
-<script src="../resources/jquery/jquery.min.js"></script>
-<script src="../resources/popper.js/umd/popper.min.js"></script>
-<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
