@@ -1,16 +1,17 @@
-img{
+.imgDisplay {
     display: block;
     position: absolute;
     height: 100px;
     width: 100px;
 }
 
+img{
+    .imgDisplay;
+}
+
 img:before {
     content: url('http://localhost:8080/catswebapp/resources/img/cat_upload.jpg');
-    display: block;
-    position: absolute;
-    height: 100px;
-    width: 100px;
+    .imgDisplay;
 }
 
 form{
