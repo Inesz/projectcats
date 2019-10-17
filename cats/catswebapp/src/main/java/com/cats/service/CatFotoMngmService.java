@@ -24,7 +24,7 @@ public class CatFotoMngmService {
     @Autowired
     private SpringCatFotoDAO springCatFotoDAO;
 
-    public void saveFile(MultipartFile file, String catName, String comment) {
+    public void saveFile(MultipartFile file, String catId, String comment) {
         try {
             checkFileType(file);
         } catch (Exception e) {
@@ -37,18 +37,17 @@ public class CatFotoMngmService {
         }
 
         String newName = createNewName();
-        cloudCatFotoDAO.fileUpload(file, newName);
-
-        CatFoto catFoto = setCatFoto(file, newName, catName, comment);
+        CatFoto catFoto = setCatFoto(file, newName, catId, comment);
         updateDB(catFoto);
+        cloudCatFotoDAO.fileUpload(file, newName);
     }
 
     private void updateDB(CatFoto catFoto) {
         springCatFotoDAO.save(catFoto);
     }
 
-    private CatFoto setCatFoto(MultipartFile file, String newName, String catName, String comment) {
-        return new CatFoto(getCatId(catName), comment, file.getOriginalFilename(), newName, (int) file.getSize(), file.getContentType());
+    private CatFoto setCatFoto(MultipartFile file, String newName, String catId, String comment) {
+        return new CatFoto(Integer.parseInt(catId), comment, file.getOriginalFilename(), newName, (int) file.getSize(), file.getContentType());
     }
 
     private void checkFileType(MultipartFile file) throws Exception {
@@ -79,8 +78,4 @@ public class CatFotoMngmService {
         return Long.toString(time);
     }
 
-    private int getCatId(String name) {
-        Optional<Cat> cat = springDataDAO.findByName(name);
-        return (cat.isPresent()) ? cat.get().getId() : 0;
-    }
 }

@@ -3,7 +3,7 @@
 <form enctype="multipart/form-data" method="POST" action="./upload?${_csrf.parameterName}=${_csrf.token}">
     <input type="file" name="imgFile" class="file-upload" accept="image/*" data-max-file-size="${data_max_file_size}"/>
     <!-- data-max-file-size not implemented - only example of using properties value -->
-    catName:<input type="text" name="catName"/>
+    <input type="hidden" name="catId" value="${cat.getId()}">
     description:<input type="text" name="description"/>
     <input type="submit" value="addImg">
 </form>

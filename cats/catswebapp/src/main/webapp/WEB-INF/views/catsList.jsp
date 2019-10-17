@@ -69,7 +69,6 @@
         </table>
         <p>
 
-        <%@ include file="imgUpload.jspf" %>
 
     <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>

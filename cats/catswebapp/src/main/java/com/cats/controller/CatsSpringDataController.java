@@ -62,10 +62,10 @@ public class CatsSpringDataController {
     }
 
 
-    @RequestMapping(value = "/upload", method = {RequestMethod.POST})
-    public String handleFileUpload(Model model, @RequestParam("imgFile") MultipartFile imgFile, @RequestParam("catName") String catName, @RequestParam("description") String description) {
-        catFotoMngmService.saveFile(imgFile, catName, description);
-        return "redirect:cats";
+    @RequestMapping(value = "/cats/upload", method = {RequestMethod.POST})
+    public String handleFileUpload(Model model, @RequestParam("imgFile") MultipartFile imgFile, @RequestParam("catId") String catId, @RequestParam("description") String description) {
+        catFotoMngmService.saveFile(imgFile, catId, description);
+        return "redirect:" + catId;
     }
 
     @RequestMapping(value = "/cats/{id}", method = {RequestMethod.GET})
