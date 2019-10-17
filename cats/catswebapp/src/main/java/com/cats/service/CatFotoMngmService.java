@@ -1,16 +1,17 @@
 package com.cats.service;
 
-import com.cats.Cat;
 import com.cats.CatFoto;
 import com.cats.DAO.CloudCatFotoDAO;
 import com.cats.DAO.SpringCatFotoDAO;
 import com.cats.DAO.SpringDataDAO;
+import com.google.cloud.storage.Blob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.Optional;
 
@@ -40,6 +41,23 @@ public class CatFotoMngmService {
         CatFoto catFoto = setCatFoto(file, newName, catId, comment);
         updateDB(catFoto);
         cloudCatFotoDAO.fileUpload(file, newName);
+    }
+
+    /**
+     *
+     * @param catId
+     * @return Base64 String img
+     */
+    public String getCatImage(String catId) {
+        String encodeCatImg = "";
+        Optional<CatFoto> catFoto = springCatFotoDAO.findByCatId(Integer.parseInt(catId));
+
+        if(catFoto.isPresent()) {
+            Blob catImg = cloudCatFotoDAO.fileDownload(catFoto.get().getNewname());
+            encodeCatImg = Base64.getEncoder().encodeToString(catImg.getContent());
+        }
+
+        return encodeCatImg;
     }
 
     private void updateDB(CatFoto catFoto) {

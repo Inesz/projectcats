@@ -35,6 +35,12 @@ public class CloudCatFotoDAO {
         }
     }
 
+    public Blob fileDownload(String name){
+        Storage storage = StorageOptions.getDefaultInstance().getService();
+        Blob catImg = storage.get(BlobId.of(bucketName, name));
+        return catImg;
+    }
+
     public void logBucketList() {
         Storage storage = StorageOptions.getDefaultInstance().getService();
         LOGGER.info("BEGIN: Bucket list");

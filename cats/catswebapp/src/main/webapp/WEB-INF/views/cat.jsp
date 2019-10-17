@@ -11,14 +11,15 @@
     <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/resources/font-awesome/css/all.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/resources/flag-icon-css/css/flag-icon.min.css" type="text/css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/resources/css/cat.css" rel="stylesheet">
     <title>Cats list</title>
 </head>
 <body>
+
 <%@ include file="authPanel.jspf" %>
-
-<h1>Cat ${cat.getName()}</h1>
-
 <%@ include file="imgUpload.jspf" %>
+<h1>Cat ${cat.getName()}</h1>
+<img src="${catImg}"/>
 
 <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>

@@ -2,8 +2,8 @@ package com.cats.controller;
 
 import com.cats.Cat;
 import com.cats.DTO.CatDTO;
-import com.cats.service.CatsCRUDService;
 import com.cats.service.CatFotoMngmService;
+import com.cats.service.CatsCRUDService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +70,15 @@ public class CatsSpringDataController {
 
     @RequestMapping(value = "/cats/{id}", method = {RequestMethod.GET})
     public String catNameViewGet(Model model, @PathVariable("id") String id) {
-            model.addAttribute("cat", catsCRUDService.selectCatById(id));
+        model.addAttribute("cat", catsCRUDService.selectCatById(id));
+        model.addAttribute("catImg", imgUrl(catFotoMngmService.getCatImage(id)));
         return "cat";
+    }
+
+    private String imgUrl(String imgEncode){
+        String imgFormat = "data:image/jpeg;base64,";
+        String imgSrc = (imgEncode.isBlank()) ? imgEncode : imgFormat + imgEncode;
+        LOGGER.info("Cat image:" + imgSrc);
+        return imgSrc;
     }
 }
