@@ -4,6 +4,7 @@ import com.cats.CatFoto;
 import com.cats.DAO.CloudCatFotoDAO;
 import com.cats.DAO.SpringCatFotoDAO;
 import com.cats.DAO.SpringDataDAO;
+import com.cats.exception.IllegalFileFormat;
 import com.google.cloud.storage.Blob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,8 @@ public class CatFotoMngmService {
             LOGGER.info("File format: " + file.getName());
             LOGGER.info("Content type: " + file.getContentType());
             return;
+        } finally {
+            LOGGER.info("File type check completed.");
         }
 
         String newName = createNewName();
@@ -68,17 +71,40 @@ public class CatFotoMngmService {
         return new CatFoto(Integer.parseInt(catId), comment, file.getOriginalFilename(), newName, (int) file.getSize(), file.getContentType());
     }
 
+    /**
+     * Check File Type
+     *
+     * Using your own exception compatible with JDK 7:
+     * <ul>
+     *  <li>multi-catch exception</li>
+     *  <li>rethrow exceptions</li>
+     *  <li>more precise rethrow, exceptions chain ('Caused by:' in err message)</li>
+     * </ul>
+     * @param file
+     * @throws Exception there is no need to declare IllegalArgumentException and IllegalFileFormat exceptions in throws section (are Exceptions subclass)
+     */
     private void checkFileType(MultipartFile file) throws Exception {
         final String fileName = file.getOriginalFilename();
-        String extension = "";
 
-        if (fileName != null && !fileName.isEmpty() && fileName.contains(".") && file.getName().equals("imgFile")) {
-            extension = fileName.substring(fileName.lastIndexOf('.') + 1);
-            if (!validExtension(allowedExt, extension)) {
-                throw new Exception("File must be an image, is '" + extension + "'.");
+        try{
+            String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+            if(fileName == null || fileName.isEmpty()){
+                throw new IllegalArgumentException("Invalid file name; File name is empty.");
             }
-        } else {
-            throw new Exception("Invalid name [" + file.getOriginalFilename() + "] or format [" + file.getName() + "].");
+            if(!fileName.contains(".")){
+                throw new IllegalArgumentException("Invalid file name; File name does not contain the extension");
+            }
+            if(!file.getName().equals("imgFile")){
+                throw new IllegalArgumentException("Invalid file format [" + file.getName() + "]; only 'imgFile' is allowed.");
+            }
+            if (!validExtension(allowedExt, extension)) {
+                throw new IllegalFileFormat("Invalid file extension [" + extension + "].");
+            }
+        }catch(IllegalArgumentException | IllegalFileFormat e){
+            throw e;
+        }catch(Exception e){
+            throw new Exception("Invalid name [" + file.getOriginalFilename() + "] or format [" + file.getName() + "].", e);
         }
     }
 
