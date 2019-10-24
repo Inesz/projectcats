@@ -2,7 +2,7 @@ DELETE FROM `GyV5uYepJV`.`Cats`;
 DELETE FROM `GyV5uYepJV`.`UserRole`;
 DELETE FROM `GyV5uYepJV`.`Users`;
 DELETE FROM `GyV5uYepJV`.`Roles`;
-
+DELETE FROM `GyV5uYepJV`.`CatFoto`;
 
 INSERT INTO `GyV5uYepJV`.`Cats` (`id`, `birth`, `name`, `owner`, `weight`) VALUES ('91', '2019-09-01 00:00:00.000000', 'Olek', 'Kasia', '3');
   INSERT INTO `GyV5uYepJV`.`Cats` (`id`, `birth`, `name`, `owner`, `weight`) VALUES ('92', '2019-10-01 00:00:00.000000', 'Kizia', 'Kasia', '1.5');
@@ -19,3 +19,5 @@ INSERT INTO `GyV5uYepJV`.`Cats` (`id`, `birth`, `name`, `owner`, `weight`) VALUE
   INSERT INTO `GyV5uYepJV`.`UserRole` (`id`, `userId`, `roleId`, `createDate`, `valid`) VALUES ('91', '91', '91', '2019-09-01 00:00:00.000000', '1');
   INSERT INTO `GyV5uYepJV`.`UserRole` (`id`, `userId`, `roleId`, `createDate`, `valid`) VALUES ('92', '92', '92', '2019-09-01 00:00:00.000000', '1');
   INSERT INTO `GyV5uYepJV`.`UserRole` (`id`, `userId`, `roleId`, `createDate`, `valid`) VALUES ('93', '91', '92', '2019-09-01 00:00:00.000000', '0');
+
+  INSERT INTO `GyV5uYepJV`.`CatFoto` (`id`, `catId`, `comment`, `oldName`, `newName`, `size`, `type`) VALUES ('91', '91', 'Kotek mamrotek :-)', 'liberte.JPG', '1571939222555', '1051794', 'image/jpeg');
