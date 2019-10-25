@@ -78,7 +78,7 @@ public class CatsSpringDataController {
     private String imgUrl(String imgEncode){
         String imgFormat = "data:image/jpeg;base64,";
         String imgSrc = (imgEncode.isBlank()) ? imgEncode : imgFormat + imgEncode;
-        LOGGER.info("Cat image:" + imgSrc);
+        LOGGER.info("Cat image imgSrc:" + imgSrc);
         return imgSrc;
     }
 }

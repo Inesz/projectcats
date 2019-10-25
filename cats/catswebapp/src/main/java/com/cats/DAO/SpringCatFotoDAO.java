@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface SpringCatFotoDAO extends CrudRepository<CatFoto, Long> {
     CatFoto save(CatFoto catFoto);
 
-    Optional<CatFoto> findByCatId(int catId);
+    //Optional<CatFoto> findByCatId(int catId);
+    //void deleteByCatId(int catId);
 }

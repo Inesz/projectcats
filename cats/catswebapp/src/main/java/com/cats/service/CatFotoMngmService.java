@@ -40,10 +40,24 @@ public class CatFotoMngmService {
             LOGGER.info("File type check completed.");
         }
 
+        removeFile(catId);
+        insertFile(file, catId, comment);
+    }
+
+    private void insertFile(MultipartFile file, String catId, String comment) {
         String newName = createNewName();
         CatFoto catFoto = setCatFoto(file, newName, catId, comment);
         updateDB(catFoto);
         cloudCatFotoDAO.fileUpload(file, newName);
+    }
+
+    private void removeFile(String catId) {
+//        Optional<CatFoto> catFoto = springCatFotoDAO.findByCatId(Integer.parseInt(catId));
+//
+//        if(catFoto.isPresent()){
+//            cloudCatFotoDAO.fileRemove(catFoto.get().getNewname());
+//            springCatFotoDAO.deleteByCatId(Integer.parseInt(catId));
+//        }
     }
 
     /**
@@ -53,12 +67,12 @@ public class CatFotoMngmService {
      */
     public String getCatImage(String catId) {
         String encodeCatImg = "";
-        Optional<CatFoto> catFoto = springCatFotoDAO.findByCatId(Integer.parseInt(catId));
-
-        if(catFoto.isPresent()) {
-            Blob catImg = cloudCatFotoDAO.fileDownload(catFoto.get().getNewname());
-            encodeCatImg = Base64.getEncoder().encodeToString(catImg.getContent());
-        }
+//        Optional<CatFoto> catFoto = springCatFotoDAO.findByCatId(Integer.parseInt(catId));
+//
+//        if(catFoto.isPresent()) {
+//            Blob catImg = cloudCatFotoDAO.fileDownload(catFoto.get().getNewname());
+//            encodeCatImg = Base64.getEncoder().encodeToString(catImg.getContent());
+//        }
 
         return encodeCatImg;
     }
@@ -68,7 +82,7 @@ public class CatFotoMngmService {
     }
 
     private CatFoto setCatFoto(MultipartFile file, String newName, String catId, String comment) {
-        return new CatFoto(Integer.parseInt(catId), comment, file.getOriginalFilename(), newName, (int) file.getSize(), file.getContentType());
+        return new CatFoto(comment, file.getOriginalFilename(), newName, (int) file.getSize(), file.getContentType());
     }
 
     /**

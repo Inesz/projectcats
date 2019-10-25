@@ -4,34 +4,42 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-/** name="cats" with @Entity is needed. Otherwise: InvalidDataAccessApiUsageException cats is not mapped */
-@Entity(name="cats")
-@Table(name="Cats")
+/**
+ * name="cats" with @Entity is needed. Otherwise: InvalidDataAccessApiUsageException cats is not mapped
+ */
+@Entity(name = "cats")
+@Table(name = "Cats")
 public class Cat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private Integer id;
 
-    @Column(name="name")
+    //@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne
+    @JoinColumn(name = "fotoId")
+    private CatFoto catFoto;
+
+    @Column(name = "name")
     private String name = "unknown";
 
-    @Column(name="birth")
+    @Column(name = "birth")
     private Date birth = new Date();
 
-    @Column(name="weight")
+    @Column(name = "weight")
     private Double weight = 0.0;
 
-    @Column(name="owner")
+    @Column(name = "owner")
     private String owner = "unknown";
 
-    public Cat(){}
+    public Cat() {
+    }
 
-    public Cat(String name){
+    public Cat(String name) {
         this.name = name;
     }
 
-    public Cat(String name, Date birth, Double weight, String owner){
+    public Cat(String name, Date birth, Double weight, String owner) {
         this.name = name;
         this.birth = birth;
         this.weight = weight;
@@ -76,5 +84,11 @@ public class Cat implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void removeCatFoto() {
+        if (catFoto != null) {
+            this.catFoto = null;
+        }
     }
 }
