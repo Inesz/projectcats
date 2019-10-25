@@ -1,5 +1,7 @@
 package com.cats;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -18,6 +20,7 @@ public class Cat implements Serializable {
     //@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     @OneToOne
     @JoinColumn(name = "fotoId")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private CatFoto catFoto;
 
     @Column(name = "name")
