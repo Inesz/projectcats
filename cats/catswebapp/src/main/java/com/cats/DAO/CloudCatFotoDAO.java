@@ -41,6 +41,21 @@ public class CloudCatFotoDAO {
         return catImg;
     }
 
+    /**
+     *
+     * @param blobName file name (DB catFoto newName)
+     */
+    public boolean fileRemove(String blobName){
+        Storage storage = StorageOptions.getDefaultInstance().getService();
+        BlobId blobId = BlobId.of(bucketName, blobName);
+        boolean deleted = storage.delete(blobId);
+        if (deleted) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void logBucketList() {
         Storage storage = StorageOptions.getDefaultInstance().getService();
         LOGGER.info("BEGIN: Bucket list");
