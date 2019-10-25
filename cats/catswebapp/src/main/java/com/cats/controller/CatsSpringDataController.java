@@ -55,9 +55,9 @@ public class CatsSpringDataController {
     }
     //end:POST-REDIRECT-GET
 
-    @RequestMapping("/remove-{name}")
-    public String catRemove(Model model, @PathVariable("name") String name) {
-        catsCRUDService.deleteCat(catsCRUDService.selectCat(name));
+    @RequestMapping("/remove-{id}")
+    public String catRemove(Model model, @PathVariable("id") String id) {
+        catsCRUDService.deleteCat(id);
         return "redirect:cats";
     }
 

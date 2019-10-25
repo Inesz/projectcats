@@ -35,4 +35,9 @@ public class CatsCRUDService {
     public void deleteCat(Cat cat){
         springDataDAO.delete(cat);
     }
+
+    public void deleteCat(String id){
+        springDataDAO.deleteById(Integer.parseInt(id));
+    }
+
 }

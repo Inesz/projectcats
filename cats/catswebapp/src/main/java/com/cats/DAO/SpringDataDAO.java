@@ -14,5 +14,5 @@ public interface SpringDataDAO extends CrudRepository<Cat, Long>
     Optional<Cat> findByName(String name);
     Cat save(Cat cat);
     void delete(Cat cat);
-    void deleteById(Long id);
+    void deleteById(int id);
 }
