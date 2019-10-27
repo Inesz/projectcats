@@ -20,6 +20,9 @@ public class CatFoto {
     @Column(name = "type")
     private String type;
 
+//    @OneToOne (mappedBy="catFoto")
+//    Cat cat;
+
     public CatFoto() {
     }
 

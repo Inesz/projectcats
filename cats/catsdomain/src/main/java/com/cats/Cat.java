@@ -16,22 +16,15 @@ public class Cat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-    //@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "fotoId")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private CatFoto catFoto;
-
     @Column(name = "name")
     private String name = "unknown";
-
     @Column(name = "birth")
     private Date birth = new Date();
-
     @Column(name = "weight")
     private Double weight = 0.0;
-
     @Column(name = "owner")
     private String owner = "unknown";
 
@@ -47,6 +40,14 @@ public class Cat implements Serializable {
         this.birth = birth;
         this.weight = weight;
         this.owner = owner;
+    }
+
+    public CatFoto getCatFoto() {
+        return catFoto;
+    }
+
+    public void setCatFoto(CatFoto catFoto) {
+        this.catFoto = catFoto;
     }
 
     public String getName() {

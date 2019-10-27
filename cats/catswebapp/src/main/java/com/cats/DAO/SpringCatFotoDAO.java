@@ -1,14 +1,12 @@
 package com.cats.DAO;
 
-import com.cats.Cat;
 import com.cats.CatFoto;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.Optional;
-
+/**
+ * CatFoto is automatically updated with Cat (cascade = CascadeType.ALL).
+ * CatFoto without connection (FK) with Cat is automatically removed (orphanRemoval = true).
+ */
 public interface SpringCatFotoDAO extends CrudRepository<CatFoto, Long> {
-    CatFoto save(CatFoto catFoto);
 
-    //Optional<CatFoto> findByCatId(int catId);
-    //void deleteByCatId(int catId);
 }

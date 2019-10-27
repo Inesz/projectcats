@@ -2,8 +2,8 @@ package com.cats.controller;
 
 import com.cats.Cat;
 import com.cats.DTO.CatDTO;
-import com.cats.service.CatFotoMngmService;
 import com.cats.service.CatsCRUDService;
+import com.cats.service.MngmService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class CatsSpringDataController {
     private CatsCRUDService catsCRUDService;
 
     @Autowired
-    private CatFotoMngmService catFotoMngmService;
+    private MngmService mngmService;
 
     @RequestMapping("")
     public String indexView(Model model) {
@@ -57,21 +57,22 @@ public class CatsSpringDataController {
 
     @RequestMapping("/remove-{id}")
     public String catRemove(Model model, @PathVariable("id") String id) {
-        catsCRUDService.deleteCat(id);
+        mngmService.deleteCatWithCatFoto(id);
         return "redirect:cats";
     }
 
 
     @RequestMapping(value = "/cats/upload", method = {RequestMethod.POST})
     public String handleFileUpload(Model model, @RequestParam("imgFile") MultipartFile imgFile, @RequestParam("catId") String catId, @RequestParam("description") String description) {
-        catFotoMngmService.saveFile(imgFile, catId, description);
+        mngmService.addImage(imgFile, catId, description);
         return "redirect:" + catId;
     }
 
     @RequestMapping(value = "/cats/{id}", method = {RequestMethod.GET})
     public String catNameViewGet(Model model, @PathVariable("id") String id) {
-        model.addAttribute("cat", catsCRUDService.selectCatById(id));
-        model.addAttribute("catImg", imgUrl(catFotoMngmService.getCatImage(id)));
+        Cat cat = catsCRUDService.selectCatById(id);
+        model.addAttribute("cat", cat);
+        model.addAttribute("catImg", imgUrl(mngmService.getImage(cat)));
         return "cat";
     }
 
