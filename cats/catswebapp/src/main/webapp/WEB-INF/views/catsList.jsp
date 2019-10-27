@@ -37,7 +37,7 @@
                 <td>${cat.getOwner()}</td>
                 <td>${cat.getBirth()}</td>
                 <td>${cat.getWeight()}</td>
-                <td><input type="button"  onclick="location.href='remove-${cat.name}'" value="remove"></td>
+                <td><input type="button"  onclick="location.href='remove-${cat.id}'" value="remove"></td>
                 </tr>
             </c:forEach>
 

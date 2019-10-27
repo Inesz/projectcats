@@ -2,50 +2,43 @@ package com.cats;
 
 import javax.persistence.*;
 
-@Entity(name="catFoto")
-@Table(name="CatFoto")
+@Entity(name = "catFoto")
+@Table(name = "CatFoto")
 public class CatFoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     private int id;
-    @Column(name="catId")
-    private int catId;
-    @Column(name="comment")
+    @Column(name = "comment")
     private String comment;
-    @Column(name="oldName")
+    @Column(name = "oldName")
     private String oldName;
-    @Column(name="newName")
+    @Column(name = "newName")
     private String newName;
-    @Column(name="size")
+    @Column(name = "size")
     private long size;
-    @Column(name="type")
+    @Column(name = "type")
     private String type;
 
-    public CatFoto(){ }
+//    @OneToOne (mappedBy="catFoto")
+//    Cat cat;
 
-    public CatFoto(String oldName, String newName, long size, String type){
+    public CatFoto() {
+    }
+
+    public CatFoto(String oldName, String newName, long size, String type) {
         this.oldName = oldName;
         this.newName = newName;
         this.size = size;
         this.type = type;
     }
 
-    public CatFoto(int catId, String comment, String oldName, String newName, long size, String type){
-        this.catId = catId;
+    public CatFoto(String comment, String oldName, String newName, long size, String type) {
         this.comment = comment;
         this.oldName = oldName;
         this.newName = newName;
         this.size = size;
         this.type = type;
-    }
-
-    public int getCatid() {
-        return catId;
-    }
-
-    public void setCatid(int catId) {
-        this.catId = catId;
     }
 
     public String getComment() {
