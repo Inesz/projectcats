@@ -11,15 +11,35 @@
     <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/resources/font-awesome/css/all.css" type="text/css" rel="stylesheet"/>
     <link href="${pageContext.request.contextPath}/resources/flag-icon-css/css/flag-icon.min.css" type="text/css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/resources/css/index.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/cat.css" rel="stylesheet">
     <title>Cats list</title>
 </head>
-<body>
 
-<%@ include file="authPanel.jspf" %>
-<%@ include file="imgUpload.jspf" %>
-<h1>Cat ${cat.getName()}</h1>
-<img src="${catImg}"/>
+<body class="bg-image">
+
+<div class="d-flex flex-column min-100">
+    <div>
+        <%@ include file="authPanel.jspf" %>
+  </div>
+
+  <div id="catFoto" class="d-flex flex-column">
+    <div class="d-flex align-items-stretch">
+        <img src="${catImg}"/>
+        <%@ include file="imgUpload.jspf" %>
+    </div>
+    <div class="d-flex align-items-stretch">
+        <h1>Cat ${cat.getName()}</h1>
+          <span>${cat.getBirth()}</span>
+         <span>${cat.getWeight()}</span>
+        <span>${cat.getOwner()}</span>
+    </div>
+  </div>
+
+
+
+    <div class="mt-auto"><%@ include file="footer.jspf" %></div>
+</div>
 
 <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>

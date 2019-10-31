@@ -4,6 +4,7 @@ import com.google.api.gax.paging.Page;
 import com.google.cloud.storage.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedInputStream;

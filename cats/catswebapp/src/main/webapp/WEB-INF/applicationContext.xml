@@ -25,6 +25,9 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
     <bean id="Cat" class="com.cats.Cat">
     </bean>
 
+    <bean id="CloudCatFotoDAO" class="com.cats.DAO.CloudCatFotoDAO">
+    </bean>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
             <value>/WEB-INF/views/</value>
