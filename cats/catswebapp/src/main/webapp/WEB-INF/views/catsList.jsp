@@ -69,11 +69,16 @@
         </table>
         <p>
 
+<a class="weatherwidget-io" href="https://forecast7.com/pl/54d3518d65/gdansk/" data-label_1="GDAŃSK" data-label_2="WEATHER" data-theme="retro-sky" >GDAŃSK WEATHER</a>
 
     <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
 </html>
 <!--
 usefull?
