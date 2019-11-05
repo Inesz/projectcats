@@ -1,6 +1,9 @@
 <sec:authentication var="principal" property="principal"/>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
+<button type="button" onclick="window.location.href='http://localhost:8080/catswebapp'" class="btn btn-dark">
+<i class="fas fa-home" style="color:white"></i>
+</button>
 <div class="col" style="color:white;" >Hello <sec:authorize access="isAuthenticated()">${principal.username}</sec:authorize>!</div>
 
 <sec:authorize access="!isAuthenticated()">
