@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -56,8 +57,13 @@ public class CatsSpringDataController {
     //end:POST-REDIRECT-GET
 
     @RequestMapping("/remove-{id}")
-    public String catRemove(Model model, @PathVariable("id") String id) {
+    public String catRemove(Model model, @PathVariable("id") String id, final RedirectAttributes redirectAttributes) {
+
         mngmService.deleteCatWithCatFoto(id);
+
+        redirectAttributes.addFlashAttribute("css", "success");
+        redirectAttributes.addFlashAttribute("msg", "redirectAttr.remove.success");
+
         return "redirect:cats";
     }
 

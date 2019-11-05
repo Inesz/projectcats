@@ -18,6 +18,15 @@
 
         <h1>Cats list</h1>
 
+        <c:if test="${not empty msg}">
+            <div class="alert alert-${css} alert-dismissible" role="alert">
+        		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        			<span aria-hidden="true">×</span>
+        		</button>
+        		<spring:message code="${msg}"/>
+            </div>
+        </c:if>
+
         <table style="width:100%">
             <tr>
                 <th>Name</th>
