@@ -1,6 +1,6 @@
 <spring:eval var="data_max_file_size" expression="@cloud.getProperty('cloud.max.file.size')"/>
 
-<form enctype="multipart/form-data" method="POST" action="./upload?${_csrf.parameterName}=${_csrf.token}">
+<form enctype="multipart/form-data" method="POST" action="./upload?${_csrf.parameterName}=${_csrf.token}" class="d-flex flex-column">
     <input type="file" name="imgFile" class="file-upload" accept="image/*" data-max-file-size="${data_max_file_size}"/>
     <!-- data-max-file-size not implemented - only example of using properties value -->
     <input type="hidden" name="catId" value="${cat.getId()}">
