@@ -28,18 +28,20 @@
         <div id="img">
             <img src="${catImg}"/>
         </div>
+        <div>
+        ${catImgComment}
+        </div>
         <%@ include file="imgUpload.jspf" %>
 
     </div>
     <div id="info" class="d-flex align-items-stretch col-6 flex-column">
-        <h1>Cat ${cat.getName()}</h1>
-          <span>${cat.getBirth()}</span>
-         <span>${cat.getWeight()}</span>
-        <span>${cat.getOwner()}</span>
+        <h1>${cat.getName()}</h1>
+           <span><spring:message code="cat.label.catName"/> ${cat.getOwner()}</span>
+          <span><spring:message code="cat.label.catBirth"/> ${cat.getBirth()}</span>
+         <span><spring:message code="cat.label.catWeight"/> ${cat.getWeight()}</span>
+        <span><spring:message code="cat.label.catOwner"/> ${cat.getOwner()}</span>
     </div>
   </div>
-
-
 
     <div class="mt-auto"><%@ include file="footer.jspf" %></div>
 </div>

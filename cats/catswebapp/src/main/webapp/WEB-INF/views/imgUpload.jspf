@@ -4,6 +4,6 @@
     <input type="file" name="imgFile" class="file-upload" accept="image/*" data-max-file-size="${data_max_file_size}"/>
     <!-- data-max-file-size not implemented - only example of using properties value -->
     <input type="hidden" name="catId" value="${cat.getId()}">
-    description:<input type="text" name="description"/>
+    <spring:message code="cat.label.imgComment"/><input type="text" name="description"/>
     <input type="submit" value="addImg">
 </form>

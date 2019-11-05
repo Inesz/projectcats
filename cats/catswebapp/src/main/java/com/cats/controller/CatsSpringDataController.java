@@ -73,6 +73,7 @@ public class CatsSpringDataController {
         Cat cat = catsCRUDService.selectCatById(id);
         model.addAttribute("cat", cat);
         model.addAttribute("catImg", imgUrl(mngmService.getImage(cat)));
+        model.addAttribute("catImgComment", getImgComment(cat));
         return "cat";
     }
 
@@ -81,5 +82,13 @@ public class CatsSpringDataController {
         String imgSrc = (imgEncode.isBlank()) ? imgEncode : imgFormat + imgEncode;
         LOGGER.info("Cat image imgSrc:" + imgSrc);
         return imgSrc;
+    }
+
+    private String getImgComment(Cat cat){
+        try {
+            return cat.getCatFoto().getComment();
+        } catch (Exception e) {
+            return "";
+        }
     }
 }
