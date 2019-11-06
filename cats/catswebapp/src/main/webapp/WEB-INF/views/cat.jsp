@@ -15,7 +15,7 @@
     <title>Cats list</title>
 </head>
 
-<body class="bg-image">
+<body class="bg-image" onload="cat.replaceByInfo()">
 
 <div class="d-flex flex-column min-100">
     <div>
@@ -37,7 +37,7 @@
         <div id="right" class="d-flex align-items-stretch col-6 flex-column">
             <div id="info" class="d-flex align-items-stretch flex-column">
                 <h1>${cat.getName()}</h1>
-                <button type="button" onclick="" class="btn btn-dark">
+                <button type="button" onclick="cat.replaceByForm()" class="btn btn-dark">
                     <i class="fas fa-pencil-alt" style="color:white"></i>
                 </button>
                 <span><spring:message code="cat.label.catName"/> ${cat.getName()}</span>
@@ -52,7 +52,7 @@
                     <button type="submit" class="btn btn-dark">
                        <i class="far fa-save" style="color:white"></i>
                     </button>
-                    <button type="button" onclick="" class="btn btn-dark">
+                    <button type="button" onclick="cat.replaceByInfo(); reset();" class="btn btn-dark">
                         <i class="fas fa-backward" style="color:white"></i>
                     </button>
 
@@ -75,6 +75,7 @@
     </div>
     <div class="mt-auto"><%@ include file="footer.jspf" %></div>
 
+    <script src="${pageContext.request.contextPath}/resources/script/cat_css.js"></script>
     <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
