@@ -20,34 +20,63 @@
 <div class="d-flex flex-column min-100">
     <div>
         <%@ include file="authPanel.jspf" %>
-  </div>
-
-  <div id="catFoto" class="d-flex flex-fill">
-    <div id="foto" class="align-items-stretch col-6">
-
-        <div id="img">
-            <img src="${catImg}"/>
-        </div>
-        <div>
-        ${catImgComment}
-        </div>
-        <%@ include file="imgUpload.jspf" %>
-
     </div>
-    <div id="info" class="d-flex align-items-stretch col-6 flex-column">
-        <h1>${cat.getName()}</h1>
-           <span><spring:message code="cat.label.catName"/> ${cat.getName()}</span>
-          <span><spring:message code="cat.label.catBirth"/> ${cat.getBirth()}</span>
-         <span><spring:message code="cat.label.catWeight"/> ${cat.getWeight()}</span>
-        <span><spring:message code="cat.label.catOwner"/> ${cat.getOwner()}</span>
-    </div>
-  </div>
 
+    <div id="catFoto" class="d-flex flex-fill">
+        <div id="foto" class="align-items-stretch col-6">
+
+            <div id="img">
+                <img src="${catImg}"/>
+            </div>
+            <div>
+                ${catImgComment}
+            </div>
+            <%@ include file="imgUpload.jspf" %>
+
+        </div>
+        <div id="right" class="d-flex align-items-stretch col-6 flex-column">
+            <div id="info" class="d-flex align-items-stretch flex-column">
+                <h1>${cat.getName()}</h1>
+                <button type="button" onclick="" class="btn btn-dark">
+                    <i class="fas fa-pencil-alt" style="color:white"></i>
+                </button>
+                <span><spring:message code="cat.label.catName"/> ${cat.getName()}</span>
+                <span><spring:message code="cat.label.catBirth"/> ${cat.getBirth()}</span>
+                <span><spring:message code="cat.label.catWeight"/> ${cat.getWeight()}</span>
+                <span><spring:message code="cat.label.catOwner"/> ${cat.getOwner()}</span>
+            </div>
+
+            <div id="form">
+                <form:form method="POST" modelAttribute="catDTO" class="d-flex align-items-stretch flex-column">
+                    <h1>${cat.getName()}</h1>
+                    <button type="submit" class="btn btn-dark">
+                       <i class="far fa-save" style="color:white"></i>
+                    </button>
+                    <button type="button" onclick="" class="btn btn-dark">
+                        <i class="fas fa-backward" style="color:white"></i>
+                    </button>
+
+                    <span><spring:message code="cat.label.catName"/>
+                          <form:input path="name" value="${cat.getName()}"/>
+                          <form:errors path="name"/>
+                  </span>
+                    <span><spring:message code="cat.label.catOwner"/>
+                          <form:input path="owner" value="${cat.getOwner()}"/>
+                          <form:errors path="owner"/></span>
+                    <span><spring:message code="cat.label.catBirth"/>
+                          <form:input path="birth" value="${cat.getBirth()}"/>
+                          <form:errors path="birth"/></span>
+                    <span><spring:message code="cat.label.catWeight"/>
+                          <form:input path="weight" value="${cat.getWeight()}"/>
+                          <form:errors path="weight"/></span>
+                </form:form>
+            </div>
+        </div>
+    </div>
     <div class="mt-auto"><%@ include file="footer.jspf" %></div>
-</div>
 
-<script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/jquery/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/popper.js/umd/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

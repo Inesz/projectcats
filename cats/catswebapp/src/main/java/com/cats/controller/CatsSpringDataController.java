@@ -80,7 +80,32 @@ public class CatsSpringDataController {
         model.addAttribute("cat", cat);
         model.addAttribute("catImg", imgUrl(mngmService.getImage(cat)));
         model.addAttribute("catImgComment", getImgComment(cat));
+
+        model.addAttribute("catDTO", new CatDTO());
         return "cat";
+    }
+
+    @RequestMapping(value = "/cats/{id}", method = {RequestMethod.POST})
+    public String catNameViewPost(Model model, @PathVariable("id") String id, @ModelAttribute("catDTO") @Valid CatDTO catDTO, BindingResult result) {
+
+        if (!result.hasErrors()) {
+            updateCat(id, catDTO);
+            return "redirect:" + id;
+        } else {
+            Cat cat = catsCRUDService.selectCatById(id);
+            model.addAttribute("cat", cat);
+            model.addAttribute("catImg", imgUrl(mngmService.getImage(cat)));
+            model.addAttribute("catImgComment", getImgComment(cat));
+            return "cat";
+        }
+    }
+
+    private void updateCat(String id, CatDTO catDTO){
+        Cat cat = catsCRUDService.selectCatById(id);
+        cat.setName(catDTO.getName());
+        cat.setOwner(catDTO.getOwner());
+        //cat.setWeight(catDTO.getWeight());
+        //cat.setBirth(catDTO.getBirth());
     }
 
     private String imgUrl(String imgEncode){
