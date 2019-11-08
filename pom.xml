@@ -57,6 +57,7 @@
         <webjars-locator.version>0.37</webjars-locator.version>
         <font-awesome.version>5.10.1</font-awesome.version>
         <flag-icon-css.version>2.4.0</flag-icon-css.version>
+        <jackson-annotations.version>2.10.0.pr2</jackson-annotations.version>
     </properties>
 
     <build>

@@ -1,9 +1,14 @@
 package com.cats;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity(name = "catFoto")
 @Table(name = "CatFoto")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//https://stackoverflow.com/questions/24994440/no-serializer-found-for-class-org-hibernate-proxy-pojo-javassist-javassist/24994562
+//https://howtodoinjava.com/hibernate/use-hibernate-initialize-to-initialize-proxycollection/
 public class CatFoto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +25,8 @@ public class CatFoto {
     @Column(name = "type")
     private String type;
 
-//    @OneToOne (mappedBy="catFoto")
-//    Cat cat;
+    //@OneToOne (mappedBy="catFoto")
+    //Cat cat;
 
     public CatFoto() {
     }
