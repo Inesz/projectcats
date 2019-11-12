@@ -3,6 +3,7 @@
        xmlns:security="http://www.springframework.org/schema/security"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
@@ -11,7 +12,12 @@
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-4.3.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://cxf.apache.org/jaxws
+       http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
     <util:properties id="cloud" location="classpath:properties/cloud.properties"/>
     <util:properties id="db" location="classpath:properties/db.properties, classpath:properties/db_security.properties"/>
@@ -46,6 +52,8 @@
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
+    <!-- disable csrf for SOAP api; important: use before rest of security:http implementation to be visible first -->
+    <security:http security="none" pattern="/soap/api"/>
     <!-- use-expressions="true" need to be set to use isAuthenticated() in jsp; access need to have hasRole()
     https://stackoverflow.com/questions/11594104/spring-security-no-visible-websecurityexpressionhandler-instance-could-be-foun-->
     <security:http auto-config="true" use-expressions="true" authentication-manager-ref="authenticationManager">
@@ -86,4 +94,5 @@
         <property name="maxUploadSize" value="${cloud.max.file.size}"/>
     </bean>
 
+    <jaxws:endpoint id="CatsSoapService" implementor="com.cats.serviceSOAP.CatsSOAPService" address="/api"/>
 </beans>

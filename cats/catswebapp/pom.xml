@@ -186,6 +186,35 @@
             <artifactId>flag-icon-css</artifactId>
             <version>${flag-icon-css.version}</version>
         </dependency>
+
+        <!--framework that allows you to produce and consume SOAP services -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf-rt-frontend-jaxws.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf-rt-transports-http.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http-jetty</artifactId>
+            <version>${cxf-rt-transports-http-jetty.version}</version>
+        </dependency>
+        <!-- provides adnotations javax.jws.WebMethod; -->
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>jsr181-api</artifactId>
+            <version>${jsr181-api.version}</version>
+        </dependency>
+        <!-- for NoClassDefFoundError: javax/xml/ws/EndpointReference -->
+        <dependency>
+            <groupId>javax.xml.ws</groupId>
+            <artifactId>jaxws-api</artifactId>
+            <version>${jaxws-api.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

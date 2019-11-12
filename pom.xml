@@ -58,6 +58,13 @@
         <font-awesome.version>5.10.1</font-awesome.version>
         <flag-icon-css.version>2.4.0</flag-icon-css.version>
         <jackson-annotations.version>2.10.0.pr2</jackson-annotations.version>
+
+        <cxf-rt-frontend-jaxws.version>3.1.6</cxf-rt-frontend-jaxws.version>
+        <cxf-rt-transports-http.version>3.1.6</cxf-rt-transports-http.version>
+        <cxf-rt-transports-http-jetty.version>3.1.6</cxf-rt-transports-http-jetty.version>
+        <cxf-rt-bindings-soap.version>3.1.6</cxf-rt-bindings-soap.version>
+        <jsr181-api.version>1.0-MR1</jsr181-api.version>
+        <jaxws-api.version>2.2.8</jaxws-api.version>
     </properties>
 
     <build>
