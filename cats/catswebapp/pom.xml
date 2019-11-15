@@ -198,11 +198,6 @@
             <artifactId>cxf-rt-transports-http</artifactId>
             <version>${cxf-rt-transports-http.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>${cxf-rt-transports-http-jetty.version}</version>
-        </dependency>
         <!-- provides adnotations javax.jws.WebMethod; -->
         <dependency>
             <groupId>javax.jws</groupId>
