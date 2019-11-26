@@ -17,7 +17,6 @@ import java.util.Base64;
 @Service
 public class ImgCloudService {
     private static Logger LOGGER = LoggerFactory.getLogger(ImgCloudService.class);
-    String[] allowedExt = {"jpg", "jpeg", "png", "gif"};
 
     @Autowired
     private CloudCatFotoDAO cloudCatFotoDAO;
@@ -68,7 +67,7 @@ public class ImgCloudService {
             if (!file.getName().equals("imgFile")) {
                 throw new IllegalArgumentException("Invalid file format [" + file.getName() + "]; only 'imgFile' is allowed.");
             }
-            if (!validExtension(allowedExt, extension)) {
+            if (!ImgFileExtension.valid(extension)) {
                 throw new IllegalFileFormat("Invalid file extension [" + extension + "].");
             }
         } catch (IllegalArgumentException | IllegalFileFormat e) {
@@ -78,13 +77,26 @@ public class ImgCloudService {
         }
     }
 
-    private boolean validExtension(String[] array, String value) {
-        for (String s : array) {
-            if (s.equalsIgnoreCase(value)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    private enum ImgFileExtension {
+        JPG(true), JPEG(true), PNG(true), GIF(true);
 
+        boolean isValid;
+
+        ImgFileExtension(boolean validity) {
+            this.isValid = validity;
+        }
+
+        boolean getIsValid() {
+            return this.isValid;
+        }
+
+        static boolean valid(String extension) {
+            for (ImgFileExtension ext : ImgFileExtension.values()) {
+                if (ext.isValid && ext.toString().equalsIgnoreCase(extension)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
 }
