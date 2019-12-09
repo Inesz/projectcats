@@ -13,17 +13,6 @@
        http://www.springframework.org/schema/data/jpa
        http://www.springframework.org/schema/data/jpa/spring-jpa-1.11.xsd">
 
-    <util:properties id="db"
-                     location="classpath:properties/db.properties, classpath:properties/db_security.properties"/>
-    <context:property-placeholder properties-ref="db" ignore-unresolvable="true"/>
-
-    <bean id="dataSource" class="${db.dataSource}">
-        <property name="driverClassName" value="${db.driverClassName}"/>
-        <property name="url" value="${db.url}"/>
-        <property name="username" value="${db.username}"/>
-        <property name="password" value="${db.password}"/>
-    </bean>
-
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="com.cats"/>
