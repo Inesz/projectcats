@@ -13,7 +13,6 @@
             /WEB-INF/springSecurity.xml
             /WEB-INF/i18n.xml
             /WEB-INF/entityManagerFactory.xml
-            /WEB-INF/dbInit.xml
             /WEB-INF/multipartResolver.xml
             /WEB-INF/jaxwsService.xml
         </param-value>
