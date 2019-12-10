@@ -3,16 +3,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>Cats database</display-name>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/rootApplicationContext.xml
-            /WEB-INF/i18n.xml
-            /WEB-INF/entityManagerFactory.xml
-            /WEB-INF/multipartResolver.xml
-            /WEB-INF/jaxwsService.xml
-        </param-value>
-    </context-param>
-
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
@@ -16,7 +17,15 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        servletContext.addListener(new ContextLoaderListener());
+        XmlWebApplicationContext rootContext = new XmlWebApplicationContext();
+        rootContext.setConfigLocation("" +
+                "/WEB-INF/rootApplicationContext.xml " +
+                "/WEB-INF/i18n.xml " +
+                "/WEB-INF/entityManagerFactory.xml " +
+                "/WEB-INF/multipartResolver.xml " +
+                "/WEB-INF/jaxwsService.xml");
+
+        servletContext.addListener(new ContextLoaderListener(rootContext));
 
         AnnotationConfigWebApplicationContext mainWebAppContext = new AnnotationConfigWebApplicationContext();
         mainWebAppContext.register(InternalResourceViewResolverConfig.class);
